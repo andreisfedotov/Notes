@@ -13,6 +13,7 @@ using Notes.Application.Common.Mappings;
 using Notes.Application.Interfaces;
 using Notes.Persistence;
 using Notes.WebApi.Middleware;
+using Notes.WebApi.Services;
 
 namespace Notes.WebApi
 {
@@ -63,6 +64,9 @@ namespace Notes.WebApi
                     ConfigureSwaggerOptions>();
             services.AddSwaggerGen();
             services.AddApiVersioning();
+
+            services.AddSingleton<ICurrentUserService, CurrentUserService>();
+            services.AddHttpContextAccessor();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
